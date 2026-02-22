@@ -1,26 +1,39 @@
-
 const React = window.React;
 const ReactDOM = window.ReactDOM;
+const { useState } = React;
 
+// Sample data inline since ES6 imports won't work with CDN setup
+const sculptureList = [
+  {
+    name: 'Homenaje a la Neurocirugía',
+    artist: 'Marta Colvin Andrade',
+    description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+    url: 'https://i.imgur.com/Mx7dA2Y.jpg',
+    alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
+  },
+  {
+    name: 'Floralis Genérica',
+    artist: 'Eduardo Catalano',
+    description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+    url: 'https://i.imgur.com/ZF6s192m.jpg',
+    alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  }
+];
 
-function Name(){
-    return  <h1>goutham</h1>;
+function Gallery(){
+   const [index, setIndex] = useState(0);
+
+   function handleClick(){
+    setIndex(index + 1);
+   }
+
+   const scp = sculptureList[index];
+return <>
+    <button onClick={handleClick}>Next</button>
+    <h2>{scp.name}</h2>
+</>
 }
-
-function Want(){
-    return <h2>Money</h2>
-}
-
-
-function Oneui(){
-    return <>
-     <h1>what is my name</h1>
-     <Name/>
-     <Want/>
-    </>
-}
-
 
 const app = document.getElementById('app');
 const root = ReactDOM.createRoot(app);
-root.render( <Oneui/>);
+root.render(React.createElement(Gallery));
